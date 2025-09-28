@@ -1,0 +1,2 @@
+# Minimal, known-to-work stack for local dev
+Django==5.0.6

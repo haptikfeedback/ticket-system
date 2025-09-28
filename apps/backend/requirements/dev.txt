@@ -1,0 +1,4 @@
+-r base.txt
+black==24.8.0
+ruff==0.6.8
+isort==5.13.2
