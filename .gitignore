@@ -24,3 +24,7 @@ Thumbs.db
 
 # Docker
 **/.pytest_cache/
+
+# Celery
+apps/backend/celerybeat-schedule
+celerybeat-schedule
