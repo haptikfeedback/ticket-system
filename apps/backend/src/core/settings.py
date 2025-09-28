@@ -7,6 +7,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent  # /apps/backend
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "dev-secret-key")
 DEBUG = os.environ.get("DJANGO_DEBUG", "1") == "1"
 ALLOWED_HOSTS = ["*"]
+TIME_ZONE = "America/Los_Angeles"
+USE_TZ = True
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -15,6 +17,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "rest_framework",
+    "tenancy",
+    "tickets",
 ]
 
 MIDDLEWARE = [
@@ -25,6 +30,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "tenancy.middleware.TenancyMiddleware",
 ]
 
 ROOT_URLCONF = "core.urls"
@@ -48,23 +54,22 @@ TEMPLATES = [
 WSGI_APPLICATION = "core.wsgi.application"
 ASGI_APPLICATION = "core.asgi.application"
 
-# DATABASE_URL for Postgres; fallback to local SQLite for safety
 _default_sqlite_url = f"sqlite:///{(BASE_DIR / 'db.sqlite3')}"
 DATABASES = {
     "default": dj_database_url.parse(os.getenv("DATABASE_URL", _default_sqlite_url), conn_max_age=600),
 }
 
-AUTH_PASSWORD_VALIDATORS = []
-LANGUAGE_CODE = "en-us"
-TIME_ZONE = "UTC"
-USE_I18N = True
-USE_TZ = True
-
 STATIC_URL = "static/"
 STATIC_ROOT = BASE_DIR / "staticfiles"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Celery
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": ["rest_framework.permissions.AllowAny"],
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "django.contrib.auth.backends.ModelBackend",
+    ],
+}
+
 CELERY_BROKER_URL = os.getenv("REDIS_URL", "redis://redis:6379/0")
 CELERY_RESULT_BACKEND = os.getenv("REDIS_URL", "redis://redis:6379/0")
 CELERY_TASK_ALWAYS_EAGER = False
