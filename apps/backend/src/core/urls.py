@@ -1,3 +1,4 @@
+from .views import enqueue_ping
 from django.contrib import admin
 from django.http import HttpResponse
 from django.urls import path
@@ -12,6 +13,7 @@ def home(_):
 
 
 urlpatterns = [
+    path("tasks/ping", enqueue_ping),
     path("admin/", admin.site.urls),
     path("", home),
     path("healthz", health),

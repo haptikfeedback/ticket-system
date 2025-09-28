@@ -1,2 +1,5 @@
-# Minimal, known-to-work stack for local dev
 Django==5.0.6
+psycopg[binary]==3.1.18
+dj-database-url==2.2.0
+celery==5.4.0
+redis==5.0.8
