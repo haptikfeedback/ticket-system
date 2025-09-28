@@ -1,0 +1,13 @@
+services:
+  backend:
+    build:
+      context: ..
+      dockerfile: infra/docker/backend.Dockerfile
+    working_dir: /app
+    environment:
+      - PYTHONPATH=/app/src
+    volumes:
+      - ../apps/backend:/app
+    command: bash -lc "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    ports:
+      - "8000:8000"
