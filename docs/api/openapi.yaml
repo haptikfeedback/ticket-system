@@ -152,7 +152,7 @@ paths:
                 type: object
                 additionalProperties: {}
           description: ''
-  /api/tickets/:
+  /api/tickets:
     get:
       operationId: tickets_list
       parameters:
@@ -209,7 +209,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/:
+  /api/tickets/{id}:
     get:
       operationId: tickets_retrieve
       parameters:
@@ -341,7 +341,7 @@ paths:
       responses:
         '204':
           description: No response body
-  /api/tickets/{id}/complete/:
+  /api/tickets/{id}/complete:
     patch:
       operationId: tickets_complete_partial_update
       summary: Mark completed
@@ -382,7 +382,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/confirm/:
+  /api/tickets/{id}/confirm:
     patch:
       operationId: tickets_confirm_partial_update
       summary: Mark ticket confirmed
@@ -423,7 +423,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/enroute/:
+  /api/tickets/{id}/enroute:
     patch:
       operationId: tickets_enroute_partial_update
       summary: Mark technician enroute
@@ -464,7 +464,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/onsite/:
+  /api/tickets/{id}/onsite:
     patch:
       operationId: tickets_onsite_partial_update
       summary: Mark technician onsite
@@ -505,7 +505,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/workstart/:
+  /api/tickets/{id}/workstart:
     patch:
       operationId: tickets_workstart_partial_update
       summary: Work started
@@ -546,7 +546,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Ticket'
           description: ''
-  /api/tickets/{id}/workstop/:
+  /api/tickets/{id}/workstop:
     patch:
       operationId: tickets_workstop_partial_update
       summary: Work stopped (pause)
